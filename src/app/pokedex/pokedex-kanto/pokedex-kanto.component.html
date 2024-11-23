@@ -1,0 +1,9 @@
+<h1>QUEL EST CE POKEMON ?</h1>
+<section>
+  @for(poke of pokeResult.results ; track pokeResult){
+    <div class="pokePreview">
+      <p>{{poke.name}}</p>
+    </div>
+
+  }
+</section>
