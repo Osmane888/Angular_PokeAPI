@@ -12,7 +12,7 @@ export class PokeService {
     private _http: HttpClient,
   ) { }
 
-  getPokeList(url: string): Observable<PokeResult> {
+  getPokeResult(url: string): Observable<PokeResult> {
     return this._http.get<PokeResult>(url);
   }
 

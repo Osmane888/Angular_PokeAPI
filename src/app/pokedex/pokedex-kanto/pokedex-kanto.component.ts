@@ -10,37 +10,43 @@ import {PokeDetails, Pokemon, PokeResult} from '../../shared/models/poke-model';
 export class PokedexKantoComponent {
 
   pokeResult!: PokeResult;
-  pokeDetails!: PokeDetails[];
+  pokemonsList!: Pokemon[];
+  pokeDetails!: PokeDetails;
 
   constructor(
     private readonly _pokeService: PokeService
   ) {
-    this.getPokeList('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0');
+    this.getPokeResult('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0');
   }
 
-  getPokeList(url: string): void{
-    this._pokeService.getPokeList(url).subscribe((results) => {
-      this.pokeResult = results;
+  getPokeResult(url: string): void {
+    this._pokeService.getPokeResult(url).subscribe((result) => {
+      this.pokeResult = result;
     })
+    this.fillPokeList();
   }
 
-  getDetails(url: string): void {
+  fillPokeList(): void{
     this.pokeResult.results.forEach((pokemon) => {
-      this._pokeService.getDetails(pokemon.url).subscribe((result) => {
-        this.pokeDetails.push(result);
-      })
+      this.pokemonsList.push(pokemon);
     })
+  }
+
+  getDetails(url: string): void{
+   this._pokeService.getDetails(url).subscribe((details) => {
+     this.pokeDetails = details;
+   })
   }
 
   getNext(): void{
     if(this.pokeResult.next){
-    this.getPokeList(this.pokeResult.next);
+    this.getPokeResult(this.pokeResult.next);
     }
   }
 
   getPrevious(): void{
     if(this.pokeResult.previous){
-      this.getPokeList(this.pokeResult.previous);
+      this.getPokeResult(this.pokeResult.previous);
     }
   }
 }

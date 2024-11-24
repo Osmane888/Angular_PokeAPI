@@ -1,9 +1,8 @@
 <h1>QUEL EST CE POKEMON ?</h1>
 <section>
-  @for(poke of pokeResult.results ; track pokeResult){
+  @for(poke of pokemonsList ; track poke.name){
     <div class="pokePreview">
       <p>{{poke.name}}</p>
-      <p>{{pokeDetails.find(poke.name)?.height}}</p>
     </div>
 
   }
