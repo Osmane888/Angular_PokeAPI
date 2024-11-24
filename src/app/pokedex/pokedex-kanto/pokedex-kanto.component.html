@@ -3,6 +3,7 @@
   @for(poke of pokeResult.results ; track pokeResult){
     <div class="pokePreview">
       <p>{{poke.name}}</p>
+      <p>{{pokeDetails.find(poke.name)?.height}}</p>
     </div>
 
   }
