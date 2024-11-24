@@ -1,9 +1,17 @@
-<h1>QUEL EST CE POKEMON ?</h1>
+<h1>Pokedex du Kanto</h1>
 <section>
   @for(poke of pokemonsList ; track poke.name){
     <div class="pokePreview">
       <p>{{poke.name}}</p>
+      <button (click)="getDetails(poke.url)">Details</button>
     </div>
-
   }
+
+  <div class="pokeCard">
+    @if(pokeDetails){
+      <div class="details">
+        <p>{{pokeDetails.height}}</p>
+      </div>
+    }
+  </div>
 </section>

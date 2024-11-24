@@ -1,0 +1,8 @@
+section{
+  display: grid;
+  grid-template-columns: 20rem auto;
+}
+
+.pokePreview{
+  max-width: fit-content;
+}

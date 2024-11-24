@@ -8,6 +8,7 @@ export interface PokeResult{
 export interface Pokemon{
     name: string;
     url: string;
+    pokeDetails: PokeDetails;
 }
 
 export interface PokeDetails{
