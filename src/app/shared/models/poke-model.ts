@@ -13,29 +13,26 @@ export interface Pokemon{
 
 export interface PokeDetails{
  id:number;
+  species:{
+    name:string;
+  }
  abilities: Ability[];
  height: number;
  weight: number;
- sprites: {
-   front_default: string;
-   other: {
-     dream_world: {
-       front_default: string;
-     }
-   }
- }
- species:{
-     name:string;
- }
  type:[
      type:{
      name:string;
      }
  ]
+  sprites: Sprite;
 }
 
 export interface Ability{
      ability: {
          name: string;
      }
+}
+
+export interface Sprite{
+  front_default: string;
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {PokeDetails, Pokemon, PokeResult} from '../../shared/models/poke-model';
+import {PokeDetails, Pokemon, PokeResult, Sprite} from '../../shared/models/poke-model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +18,9 @@ export class PokeService {
 
   getDetails(url : string): Observable<PokeDetails>{
     return this._http.get<PokeDetails>(url);
+  }
+
+  getImg(url: string): Observable<Sprite>{
+    return this._http.get<Sprite>(url);
   }
 }

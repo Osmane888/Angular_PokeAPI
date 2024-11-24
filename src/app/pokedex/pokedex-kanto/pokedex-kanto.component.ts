@@ -23,19 +23,58 @@ export class PokedexKantoComponent {
   getPokeResult(url: string): void {
     this._pokeService.getPokeResult(url).subscribe((result) => {
       this.pokeResult = result;
-      this.fillPokeList();
+      this.pokemonsList = result.results;
+
+      this.pokemonsList.forEach((pokemon) => {
+        this.getDetails(pokemon.url)
+        this.getImage(pokemon.pokeDetails.sprites.front_default)
+      })
+
     })
   }
 
-  fillPokeList(): void{
-    this.pokemonsList = this.pokeResult.results;
+  getImage(url: string): void{
+    this._pokeService.getImg(url).subscribe((img) => {
+      this.pokeDetails.sprites = img;
+    })
   }
 
   getDetails(url: string): void{
-   this._pokeService.getDetails(url).subscribe((details) => {
-     this.pokeDetails = details;
-   })
+    this._pokeService.getDetails(url).subscribe((details) => {
+      this.pokeDetails = details;
+    })
   }
+
+
+
+
+/*
+  pokeResult!: PokeResult;
+  resultList!:Pokemon[];
+  pokeListDetails!: PokeDetails[];
+
+  constructor(
+    private readonly _pokeService: PokeService
+  ) {
+    this.getPokeResult('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0');
+  }
+
+  getPokeResult(url: string): void {
+    this._pokeService.getPokeResult(url).subscribe((result) => {
+      this.pokeResult = result;
+      this.resultList = this.pokeResult.results;
+    })
+  }
+
+  fillPokeList(): void {
+    this.resultList.forEach((pokemonDetails) => {
+      this.pokeListDetails.push(pokemonDetails.pokeDetails);
+    })
+  }
+
+ */
+
+
 
   getNext(): void{
     if(this.pokeResult.next){
@@ -48,4 +87,7 @@ export class PokedexKantoComponent {
       this.getPokeResult(this.pokeResult.previous);
     }
   }
+
+
+
 }
