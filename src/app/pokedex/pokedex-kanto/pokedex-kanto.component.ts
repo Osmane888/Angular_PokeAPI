@@ -24,12 +24,6 @@ export class PokedexKantoComponent {
     this._pokeService.getPokeResult(url).subscribe((result) => {
       this.pokeResult = result;
       this.pokemonsList = result.results;
-
-      this.pokemonsList.forEach((pokemon) => {
-        this.getDetails(pokemon.url)
-        this.getImage(pokemon.pokeDetails.sprites.front_default)
-      })
-
     })
   }
 
@@ -44,7 +38,6 @@ export class PokedexKantoComponent {
       this.pokeDetails = details;
     })
   }
-
 
 
 
