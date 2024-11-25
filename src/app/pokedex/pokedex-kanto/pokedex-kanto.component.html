@@ -4,7 +4,7 @@
   @for(poke of pokemonsList ; track poke.name){
     <div class="pokePreview">
       <p>{{poke.name}}</p>
-      <img [src]="poke.pokeDetails.sprites.front_default" alt="{{poke.name}}">
+      <img [src]="poke.pokeDetails.sprites.front_default" alt="{{poke.name}}" id="icon">
     </div>
   }
   </div>

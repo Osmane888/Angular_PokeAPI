@@ -3,11 +3,14 @@ section{
   grid-template-columns: 20rem auto;
 }
 
-
-
-
 .pokePreview{
   max-width: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#icon{
+  max-width: 4.5rem;
 }
 
 .pokeCard{

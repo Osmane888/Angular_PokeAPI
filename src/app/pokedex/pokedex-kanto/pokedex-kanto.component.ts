@@ -13,7 +13,6 @@ export class PokedexKantoComponent {
   pokeResult!: PokeResult;
   pokemonsList!: Pokemon[];
   pokeDetails!: PokeDetails;
-  pokePic!:Sprite;
 
   constructor(
     private readonly _pokeService: PokeService
@@ -28,7 +27,7 @@ export class PokedexKantoComponent {
       this.pokemonsList.forEach((pokemon) => {
         this._pokeService.getDetails(pokemon.url).subscribe((details) => {
           pokemon.pokeDetails = details;
-          this._pokeService.getImg(this.pokeDetails.sprites.front_default).subscribe((pic) => {
+          this._pokeService.getImg(pokemon.pokeDetails.sprites.front_default).subscribe((pic) => {
             pokemon.pokeDetails.sprites = pic;
           })
         })
