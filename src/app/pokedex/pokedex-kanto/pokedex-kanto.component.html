@@ -10,5 +10,13 @@
   }
   </div>
 
+  <div class="pokeCard">
+    @if(pokeDetails){
+      <h1>{{pokeDetails.species.name}}</h1>
+      <p>{{pokeDetails.height}}</p>
+      <img [src]="pokeDetails.sprites.other.dream_world.front_default" alt="NO PIC" id="fullPic">
+    }
+    <button (click)="cloeDetails()">Fermer</button>
+  </div>
 
 </section>

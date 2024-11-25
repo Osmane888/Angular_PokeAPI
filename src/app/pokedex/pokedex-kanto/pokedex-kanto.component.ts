@@ -12,7 +12,7 @@ export class PokedexKantoComponent {
 
   pokeResult!: PokeResult;
   pokemonsList!: Pokemon[];
-  pokeDetails!: PokeDetails;
+  pokeDetails!: PokeDetails | null;
   details!:PokeDetails;
 
   constructor(
@@ -28,28 +28,28 @@ export class PokedexKantoComponent {
       this.pokemonsList.forEach((pokemon) => {
         this._pokeService.getDetails(pokemon.url).subscribe((details) => {
           pokemon.pokeDetails = details;
-          this._pokeService.getImg(pokemon.pokeDetails.sprites.front_default).subscribe((pic) => {
-            pokemon.pokeDetails.sprites = pic;
-          })
+          this.getImages(pokemon.pokeDetails.sprites.front_default, pokemon.pokeDetails.sprites.other.dream_world.front_default, pokemon);
         })
       })
     })
   }
 
-  getImage(url: string): void {
-    this._pokeService.getImg(url).subscribe((img) => {
-      this.pokeDetails.sprites = img;
+  getImages(urlIcon : string, urlPic: string, pokemon: Pokemon): void {
+    this._pokeService.getImg(urlIcon).subscribe((icon) => {
+      pokemon.pokeDetails.sprites = icon;
     })
+    this._pokeService.getImg(urlPic).subscribe((icon) => {
+      pokemon.pokeDetails.sprites.other.dream_world = icon;
+    })
+
   }
 
-  getDetails(url: string): void {
-    this._pokeService.getDetails(url).subscribe((details) => {
-      this.pokeDetails = details;
-    })
+  displayDetails(details: PokeDetails): void {
+    this.pokeDetails = details;
   }
 
-  displayDetails(pokemon: PokeDetails){
-    this.details = pokemon;
+  cloeDetails(): void {
+    this.pokeDetails = null;
   }
 
   getNext(): void {

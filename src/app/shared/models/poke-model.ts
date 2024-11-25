@@ -35,4 +35,9 @@ export interface Ability{
 
 export interface Sprite{
   front_default: string;
+  other: {
+    dream_world: {
+      front_default: string;
+    }
+  }
 }
