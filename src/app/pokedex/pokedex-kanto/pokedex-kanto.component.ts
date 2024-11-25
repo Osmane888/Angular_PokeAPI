@@ -13,6 +13,7 @@ export class PokedexKantoComponent {
   pokeResult!: PokeResult;
   pokemonsList!: Pokemon[];
   pokeDetails!: PokeDetails;
+  details!:PokeDetails;
 
   constructor(
     private readonly _pokeService: PokeService
@@ -45,6 +46,10 @@ export class PokedexKantoComponent {
     this._pokeService.getDetails(url).subscribe((details) => {
       this.pokeDetails = details;
     })
+  }
+
+  displayDetails(pokemon: PokeDetails){
+    this.details = pokemon;
   }
 
   getNext(): void {

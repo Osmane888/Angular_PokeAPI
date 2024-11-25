@@ -5,7 +5,10 @@
     <div class="pokePreview">
       <p>{{poke.name}}</p>
       <img [src]="poke.pokeDetails.sprites.front_default" alt="{{poke.name}}" id="icon">
+      <button (click)="displayDetails(poke.pokeDetails)" id="detailsToggle">Details</button>
     </div>
   }
   </div>
+
+
 </section>
