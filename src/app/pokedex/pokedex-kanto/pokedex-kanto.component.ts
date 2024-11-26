@@ -28,20 +28,10 @@ export class PokedexKantoComponent {
       this.pokemonsList.forEach((pokemon) => {
         this._pokeService.getDetails(pokemon.url).subscribe((details) => {
           pokemon.pokeDetails = details;
-          this.getImages(pokemon.pokeDetails.sprites.front_default, pokemon.pokeDetails.sprites.other.dream_world.front_default, pokemon);
         })
       })
+      console.log(this.pokemonsList)
     })
-  }
-
-  getImages(urlIcon : string, urlPic: string, pokemon: Pokemon): void {
-    this._pokeService.getImg(urlIcon).subscribe((icon) => {
-      pokemon.pokeDetails.sprites = icon;
-    })
-    this._pokeService.getImg(urlPic).subscribe((icon) => {
-      pokemon.pokeDetails.sprites.other.dream_world = icon;
-    })
-
   }
 
   displayDetails(details: PokeDetails): void {

@@ -19,8 +19,4 @@ export class PokeService {
   getDetails(url : string): Observable<PokeDetails>{
     return this._http.get<PokeDetails>(url);
   }
-
-  getImg(url: string): Observable<Sprite>{
-    return this._http.get<Sprite>(url);
-  }
 }

@@ -1,9 +1,14 @@
 <h1>Pokedex du Kanto</h1>
+<div class="navButtons">
+<button (click)="getPrevious()">Previous</button>
+<button (click)="getNext()">Next</button>
+</div>
+
 <section>
   <div class="pokeList">
   @for(poke of pokemonsList ; track poke.name){
     <div class="pokePreview">
-      <p>{{poke.name}}</p>
+      <p>{{poke?.name}}</p>
       <img [src]="poke.pokeDetails.sprites.front_default" alt="{{poke.name}}" id="icon">
       <button (click)="displayDetails(poke.pokeDetails)" id="detailsToggle">Details</button>
     </div>
@@ -13,10 +18,16 @@
   <div class="pokeCard">
     @if(pokeDetails){
       <h1>{{pokeDetails.species.name}}</h1>
-      <p>{{pokeDetails.height}}</p>
+      <p>Height : {{pokeDetails.height}} decimeters</p>
+      <div class="abilities">
+      @for(abilities of pokeDetails.abilities; track abilities.ability.name) {
+        <p>Ability : {{abilities.ability.name}}</p>
+      }
+      </div>
       <img [src]="pokeDetails.sprites.other.dream_world.front_default" alt="NO PIC" id="fullPic">
+      <button (click)="cloeDetails()">Close</button>
     }
-    <button (click)="cloeDetails()">Fermer</button>
   </div>
 
 </section>
+
